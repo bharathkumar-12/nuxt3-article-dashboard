@@ -7,6 +7,10 @@ A production-ready Article Dashboard built with **Nuxt 3**, **TypeScript**, **Pi
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=flat-square&logo=tailwindcss)
 ![Pinia](https://img.shields.io/badge/Pinia-2.2-yellow?style=flat-square)
 
+## 🌐 Live Demo
+
+[🚀 View Live Application](https://iridescent-cajeta-be05ee.netlify.app/)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
