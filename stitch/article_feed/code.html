@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NuxtLens | Editorial Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-container": "#aeb9d0",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "primary-container": "#4446d2",
+                        "outline-variant": "#454652",
+                        "secondary": "#bcc7de",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#00363e",
+                        "inverse-surface": "#dae2fd",
+                        "on-error": "#690005",
+                        "surface-dim": "#0b1326",
+                        "surface-container-low": "#131b2e",
+                        "tertiary-container": "#006472",
+                        "on-surface-variant": "#c5c5d4",
+                        "on-primary-container": "#ceceff",
+                        "on-tertiary-fixed": "#001f25",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-fixed": "#d8e3fb",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#263143",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "tertiary": "#2fd9f4",
+                        "surface-bright": "#31394d",
+                        "on-background": "#dae2fd",
+                        "on-primary": "#1000a9",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-container": "#3e495d",
+                        "inverse-on-surface": "#283044",
+                        "outline": "#8f909e",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "background": "#0b1326",
+                        "surface-container-high": "#222a3d",
+                        "surface-container-lowest": "#060e20",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed-dim": "#2fd9f4",
+                        "surface": "#0b1326",
+                        "on-primary-fixed": "#07006c",
+                        "on-tertiary-container": "#50e5ff",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface": "#dae2fd",
+                        "surface-variant": "#2d3449",
+                        "tertiary-fixed": "#a2eeff",
+                        "primary": "#c0c1ff",
+                        "surface-container": "#171f33",
+                        "inverse-primary": "#494bd6"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(192, 193, 255, 0.1);
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+        .content-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-indigo-500/10 bg-slate-900/70 backdrop-blur-xl flex justify-between items-center px-8 h-20 max-w-full mx-auto font-manrope antialiased tracking-tight shadow-[0_10px_40px_rgba(7,0,108,0.15)]">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-bold tracking-tighter text-slate-100">NuxtLens</span>
+<div class="hidden md:flex gap-8">
+<a class="text-indigo-300 border-b-2 border-indigo-400 pb-1" href="#">Articles</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Explorations</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Archive</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-tertiary w-64 placeholder:text-slate-500" placeholder="Search insights..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-indigo-300 hover:bg-indigo-500/10 p-2 rounded-full transition-all duration-300 active:scale-95">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-indigo-500/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Professional male portrait with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvSUygfr2_RGZpCKKAY27t6LAqz0Ya1xW_7829hwU-1dUmDg9Y0B4ONNuKY3Fy_2hxc8e40gbNV0O2Nnhz7ywwRSo-m8jb7IG2ZHwn4FSQU7RwhBgH4US2xi9fNDttzQVxyqpoZDloy9szKwWLcme2MP-KFwc7kOEvchIm1YzVaGn2PgohbGFE6TrKlnc0RVxTy5GO6lGP1pJkchPy7I0FN4niK-pGVsEAL_ARzTjUoA4KnF69RXjTl9ZefzbKGZTbGHNof1I231z2"/>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-8 max-w-7xl mx-auto space-y-24">
+<!-- Hero Featured Article -->
+<section class="content-fade-in relative group cursor-pointer">
+<div class="editorial-grid">
+<div class="col-span-12 lg:col-span-8 overflow-hidden rounded-xl bg-surface-container-low aspect-[16/9] lg:aspect-auto lg:h-[600px] relative">
+<img alt="Web3 Abstract Architecture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Abstract 3D digital architecture with glowing blue lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBfNW-tNTqwHJkaAIBr7r9p3ALpgzXdbiPtyP3nH9piXPgxsGrA0UVjETGQDdPvmd-ubwI2005hIAEx5xEklTkBFL-3O9bOLpkq9_scoP22tlPgI6Qo6LF_cyBa91PhOfqpJgDSZAVYqGXKugLo-KLDEStBOzzDMXYHTERRkBzB9ihl01Aas-j90cBtE5ntCo1-PU5tSly55oY1R8VlfjTwOUkcrPGaXA6f8qHzuKE0sHve-Be1MXCdu8T_t1fpP4OTZrMNuAUvN09"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="col-span-12 lg:col-span-4 flex flex-col justify-center space-y-6 lg:pl-4">
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-tertiary/10 text-tertiary border border-tertiary/20">Featured</span>
+<span class="text-xs font-medium text-on-surface-variant font-label">12 MIN READ</span>
+</div>
+<h1 class="text-5xl lg:text-6xl font-extrabold tracking-tighter text-on-surface leading-[1.1] font-headline">The Pulse of Nuxt 3: Hydration Reimagined</h1>
+<p class="text-lg text-on-surface-variant/80 font-body leading-relaxed">
+                        Explore how the latest server-side rendering techniques are reducing Time to Interactive by 40% in modern edge environments.
+                    </p>
+<div class="flex items-center gap-4 pt-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-primary/20">
+<img alt="Author" class="w-full h-full object-cover" data-alt="Close up portrait of a tech writer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyC9et5g2hmGyn_pWvt6XjkAINrGKQ5BPVewY3CyKtSYxO49Nk6N84h9NC87-6qbmHXEtN0EsLN0stdFI7POiNQhiSjY-A8dxTCeXtyO1wGv_QFDMg4l5fmIDP3CNOXMeteCWeMCSOQgoTCe0lxmxF64THZr-ZvQw0QfzRSh0UEEsi8zeSrhQjyD-e_CW8ehJbKjR2b41xSnxqSb53H-8zoupEfW8tyzIisUFIY9fZ0eck5jLOJ8qRddQc-Cv7YLekQx7dGVcbmWGw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Elena Vance</p>
+<p class="text-xs text-on-surface-variant">Core Contributor</p>
+</div>
+</div>
+<div class="pt-6">
+<button class="px-8 py-4 glass-panel rounded-full text-primary font-bold tracking-tight hover:bg-primary-container transition-all duration-300 active:scale-95 flex items-center gap-2 group/btn">
+                            Read Full Insight
+                            <span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Article Grid Section -->
+<section class="space-y-12">
+<div class="flex justify-between items-end border-b border-indigo-500/5 pb-8">
+<div>
+<h2 class="text-3xl font-bold tracking-tighter text-on-surface font-headline">Latest Explorations</h2>
+<p class="text-on-surface-variant mt-2">Deep dives into the evolving digital ecosystem.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">view_agenda</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<article class="group space-y-6 content-fade-in" style="animation-delay: 0.1s;">
+<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low relative">
+<img alt="Code interface" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Stylized glowing lines of computer code on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyxhi2v08nEoQgrlUqV-58dY6ta1N6Jf1jFhhUGHdfPFdCmlmx6_DW0XMqS4HJ7nIRDZK3YqJX4-E6HueYNOk8fcj3dRgLtKFs-67IbIAjumCzBiicOqrGIcl43vzuY-x66VvcG6Kvp2quimczM2LYhO8dXDIlu37-G6qwkgZfNA2aE81Fps1J1_bCpUwDGiualcVGoAG0cuG2EJWjl55Ha3sCJLovApJI8R4ve8pgOpiCPbRsGrNelQRgWOPsnLWUO5HncMZZvh5P"/>
+<div class="absolute top-4 left-4">
+<span class="text-[10px] font-bold tracking-widest px-2 py-1 bg-surface/80 backdrop-blur-md text-tertiary rounded uppercase">Optimization</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-[10px] font-bold text-on-surface-variant/60 tracking-widest uppercase">
+<span>MARCH 14</span>
+<span class="w-1 h-1 rounded-full bg-primary/40"></span>
+<span>6 MIN READ</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-tight font-headline">Mastering Composable Patterns for Scalable Apps</h3>
+<p class="text-on-surface-variant/70 text-sm line-clamp-3 font-body">
+                            Why logic extraction is the key to maintaining velocity in large-scale Nuxt projects.
+                        </p>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-8 h-8 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Portrait of a young male developer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFIF3hXEKdLuXDURACtXeoFZwSVXV1RoTncupASa0kCTCw1jSKsjB0GOCsLG_ErVSko7mKjhnThu3MxEmDZnHaUQg53uipOtM9-kgKjRQrcrJKSrS-LUhJT7i9jcTwre94SvV_zb2kiEw9Du_GJlJrE6htr_ht3-dc61smFzImYkNxyDXNDwEXYZIYkowssg7GuPibAx5mknPwr--h5Ztaj62oDXyJLGsTslGjEN4N0ZE-nZeTrKQ8V10LA6g8UEOY4DbtT9zDn7CK"/>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant">Marcus Thorne</span>
+</div>
+</article>
+<!-- Card 2 (Highlight variant) -->
+<article class="group space-y-6 content-fade-in glass-panel p-6 rounded-xl border border-indigo-500/5 hover:bg-surface-container-high transition-all duration-300" style="animation-delay: 0.2s;">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-low relative">
+<img alt="Satellite view" class="w-full h-full object-cover transition-transform duration-500 group-hover:rotate-1" data-alt="Stunning earth from space showing city lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBesiP47BeyMP--tKRYBih9Duwtd8CI6TlS3jOhhZVpGO547f2Y3SKHMINm05LawcOfeOFhKkfHNwzP06fyxLYdEVWqeCTkfk2_5H0TCsz3wPmyqMkmbUx31kTk5bUpecekwoe8rowvEGmdZ7wz3vnmdfAIaXEQ2RN9LcLH9ofSpRJ8uFjMxOtEHjSqDyohZ319I71Rv4xlyo_8RorSdvolhGLymEarRSanMVQx0R3y5tntXQbuVyNZztgcgkGCmyQUq0Hep9rERa6P"/>
+<div class="absolute top-4 left-4">
+<span class="text-[10px] font-bold tracking-widest px-2 py-1 bg-primary/90 text-on-primary rounded uppercase">Breaking</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-[10px] font-bold text-on-surface-variant/60 tracking-widest uppercase">
+<span>MARCH 12</span>
+<span class="w-1 h-1 rounded-full bg-primary/40"></span>
+<span>9 MIN READ</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-tight font-headline">Nuxt DevTools: The 2024 Power User Guide</h3>
+<p class="text-on-surface-variant/70 text-sm line-clamp-3 font-body">
+                            Unlock the full potential of your development environment with these hidden debugging gems.
+                        </p>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-8 h-8 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Portrait of a female engineer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLwnVAROINg2H7IqtasOy7FNj3cgMk3Yzk260fyg-GRWsJ-opGtS8AyVj4uh-7-ljIjjIhrevpNd6Ekcyagz65XeXTkehJhFdtfPBepbU9x1_PpXC3WvtByd-ZQ0kZHuOgOaYsi5qa-Hh1bAWPdH4B5Ru7_WG4SE3ZQ_A0q8l7f9j5VAEUTEPp2PAQp1WpjB0mX2QdjB_i5RK8YM8z_z7UHdEpESNlXlZU5I3fzQulqk26IQm-vU83ai2fXK6upS_QieVYgQN3NUpP"/>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant">Sarah Chen</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group space-y-6 content-fade-in" style="animation-delay: 0.3s;">
+<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low relative">
+<img alt="Retro tech" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A collection of vintage computer parts and circuits" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvDhjWqPPrRR0fhEK7zfGSZQkQPCzl1txHi1hG3Jp7LUOoA5SEmJ-5-pDA6SQ2IZQ4l9FaDpAF57WAkUdVZN0DPoFwRgIUBR2wn7wiV8HmJ9PnMDMBaOFYM2GtEH_xjc4mZVQi2keCN3Q63e0YKq_2T8qboMAX2MIB62OZdl8azVbhmqlqIKijJz5UHrdbA-vm3-RZxUgPOV-MTWnOXnbXKkTfKE2uwIX_dzVNkw5P5gOK1z5ySGH5FuhQqr2VYAjTGB0oXUvRBpjj"/>
+<div class="absolute top-4 left-4">
+<span class="text-[10px] font-bold tracking-widest px-2 py-1 bg-surface/80 backdrop-blur-md text-tertiary rounded uppercase">Architecture</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-[10px] font-bold text-on-surface-variant/60 tracking-widest uppercase">
+<span>MARCH 08</span>
+<span class="w-1 h-1 rounded-full bg-primary/40"></span>
+<span>15 MIN READ</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-tight font-headline">Edge Functions and the Death of the Origin</h3>
+<p class="text-on-surface-variant/70 text-sm line-clamp-3 font-body">
+                            How distributed compute is shifting the way we think about data locality and security.
+                        </p>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-8 h-8 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Portrait of a male designer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcy8Wq_3juSuduMoFDHy2xulxjRF6XJbcDGPDZOmXBaAuKgiqEPUZmLCRkkeOCSXhsuITpiNLLN7VvfSIjeK01XwMHoiT9sU0JlIaxl7xOB84blyjcpp0AcUbau3On1E1Bn0mMMsrvpZDSb8DURVH4HEQJvlqb9CSw1aHpx2xKf1jGu0a28wQzFKmL-jx2k8VIbxXLMmvQ1eQbGF0nh2BfXETOV6ip_ISlqaiZL7qTqCMKbtI4epIyqQSqmJxUF3RS09NmqtqjvDbZ"/>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant">David K.</span>
+</div>
+</article>
+</div>
+</section>
+<!-- Newsletter Glass Section -->
+<section class="content-fade-in relative py-16 px-12 rounded-2xl overflow-hidden glass-panel border border-indigo-500/10">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="md:w-1/2 space-y-4">
+<h2 class="text-4xl font-extrabold tracking-tighter text-on-surface font-headline">Stay in the Loop</h2>
+<p class="text-on-secondary-container leading-relaxed">Join 15,000+ developers receiving our weekly digest on Nuxt, Vue, and the future of web development.</p>
+</div>
+<div class="md:w-5/12 w-full flex flex-col sm:flex-row gap-3">
+<input class="flex-grow bg-surface-container-lowest border-none rounded-lg px-6 py-4 text-on-surface focus:ring-2 focus:ring-primary placeholder:text-slate-600 transition-all" placeholder="observer@future.io" type="email"/>
+<button class="bg-primary text-on-primary font-bold px-8 py-4 rounded-lg hover:bg-primary-fixed-dim transition-colors active:scale-95">Subscribe</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 px-8 border-t border-indigo-500/5 mt-20 font-manrope text-sm tracking-wide">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-lg font-bold text-indigo-300">NuxtLens</span>
+<p class="text-slate-500">© 2024 NuxtLens Editorial. Built for the Ethereal Observer.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Terms</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">RSS Feed</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-indigo-400 hover:opacity-80 transition-opacity">language</button>
+<button class="material-symbols-outlined text-indigo-400 hover:opacity-80 transition-opacity">share</button>
+</div>
+</div>
+</footer>
+</body></html>

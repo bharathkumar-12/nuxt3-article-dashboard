@@ -19,6 +19,8 @@ export const ArticleCardSkeleton: typeof import("../components/article/ArticleCa
 export const ArticleDetailSkeleton: typeof import("../components/article/ArticleDetailSkeleton.vue").default
 export const ArticleDetailView: typeof import("../components/article/ArticleDetailView.vue").default
 export const ArticleList: typeof import("../components/article/ArticleList.vue").default
+export const AppFooter: typeof import("../components/common/AppFooter.vue").default
+export const AppHeader: typeof import("../components/common/AppHeader.vue").default
 export const EmptyState: typeof import("../components/common/EmptyState.vue").default
 export const ErrorState: typeof import("../components/common/ErrorState.vue").default
 export const LoadingState: typeof import("../components/common/LoadingState.vue").default
@@ -55,6 +57,8 @@ export const LazyArticleCardSkeleton: LazyComponent<typeof import("../components
 export const LazyArticleDetailSkeleton: LazyComponent<typeof import("../components/article/ArticleDetailSkeleton.vue").default>
 export const LazyArticleDetailView: LazyComponent<typeof import("../components/article/ArticleDetailView.vue").default>
 export const LazyArticleList: LazyComponent<typeof import("../components/article/ArticleList.vue").default>
+export const LazyAppFooter: LazyComponent<typeof import("../components/common/AppFooter.vue").default>
+export const LazyAppHeader: LazyComponent<typeof import("../components/common/AppHeader.vue").default>
 export const LazyEmptyState: LazyComponent<typeof import("../components/common/EmptyState.vue").default>
 export const LazyErrorState: LazyComponent<typeof import("../components/common/ErrorState.vue").default>
 export const LazyLoadingState: LazyComponent<typeof import("../components/common/LoadingState.vue").default>

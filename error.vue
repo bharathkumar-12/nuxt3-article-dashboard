@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * Error Page
-   *
-   * Global error handler for unhandled errors
-   */
-
   interface Props {
     error: {
       statusCode: number;
@@ -15,12 +9,10 @@
 
   const props = defineProps<Props>();
 
-  // Handle clear error
   function handleClearError() {
     clearError({ redirect: '/' });
   }
 
-  // Determine error type
   const isNotFound = computed(() => props.error.statusCode === 404);
 
   const errorTitle = computed(() => {
@@ -40,27 +32,25 @@
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-secondary-50 px-4"
-  >
-    <div class="text-center">
+  <div class="min-h-screen flex items-center justify-center bg-background px-4">
+    <div class="text-center content-fade-in">
       <!-- Error code -->
-      <div class="text-6xl font-bold text-primary-600 mb-4">
+      <div class="text-7xl font-extrabold text-primary tracking-tighter font-headline mb-4">
         {{ error.statusCode }}
       </div>
 
       <!-- Title -->
-      <h1 class="text-2xl font-bold text-secondary-900 mb-2">
+      <h1 class="text-2xl font-bold text-on-surface font-headline tracking-tight mb-3">
         {{ errorTitle }}
       </h1>
 
       <!-- Message -->
-      <p class="text-secondary-500 mb-8 max-w-md">
+      <p class="text-on-surface-variant/60 mb-10 max-w-md font-body leading-relaxed">
         {{ errorMessage }}
       </p>
 
       <!-- Action -->
-      <AppButton variant="primary" @click="handleClearError">
+      <AppButton variant="primary" size="lg" @click="handleClearError">
         Go to Home
       </AppButton>
     </div>

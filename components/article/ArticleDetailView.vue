@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * ArticleDetail Component
-   *
-   * Full article display with author info and related articles
-   */
-
   import type { ArticleDetail, ArticleStatus } from '~/types/article';
 
   interface Props {
@@ -13,28 +7,21 @@
 
   const props = defineProps<Props>();
 
-  // Status badge variant mapping
-  const statusVariants: Record<
-    ArticleStatus,
-    'success' | 'warning' | 'default'
-  > = {
+  const statusVariants: Record<ArticleStatus, 'success' | 'warning' | 'default'> = {
     published: 'success',
     draft: 'warning',
     archived: 'default',
   };
 
-  // Format date for display
   function formatDate(date: Date | null): string {
     if (!date) return 'Unpublished';
     return new Intl.DateTimeFormat('en-US', {
-      weekday: 'long',
-      year: 'numeric',
       month: 'long',
       day: 'numeric',
+      year: 'numeric',
     }).format(date);
   }
 
-  // Format short date
   function formatShortDate(date: Date | null): string {
     if (!date) return 'Unpublished';
     return new Intl.DateTimeFormat('en-US', {
@@ -46,189 +33,182 @@
 </script>
 
 <template>
-  <article class="max-w-4xl mx-auto">
-    <!-- Header -->
-    <header class="mb-8">
-      <!-- Category + Status -->
-      <div class="flex items-center space-x-3 mb-4">
-        <span
-          class="text-sm font-medium text-primary-600 uppercase tracking-wide"
-        >
-          {{ article.category.name }}
-        </span>
-        <AppBadge :variant="statusVariants[article.status]" size="sm">
-          {{ article.status }}
-        </AppBadge>
-      </div>
+  <article class="content-fade-in">
+    <!-- Hero Section -->
+    <header
+      class="relative w-full rounded-2xl overflow-hidden mb-12"
+      :class="article.featuredImage ? 'h-[480px]' : 'pt-12 pb-10 px-10 bg-surface-container'"
+    >
+      <!-- Hero image -->
+      <template v-if="article.featuredImage">
+        <img
+          :src="article.featuredImage"
+          :alt="article.title"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+      </template>
 
-      <!-- Title -->
-      <h1 class="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
-        {{ article.title }}
-      </h1>
-
-      <!-- Excerpt -->
-      <p class="text-xl text-secondary-500 mb-6">
-        {{ article.excerpt }}
-      </p>
-
-      <!-- Meta row -->
+      <!-- Content overlay -->
       <div
-        class="flex flex-wrap items-center gap-4 text-sm text-secondary-500 pb-6 border-b border-secondary-200"
+        class="relative flex flex-col justify-end h-full"
+        :class="article.featuredImage ? 'p-10' : ''"
       >
-        <!-- Author -->
-        <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-semibold mr-3"
-          >
-            {{ article.author.name.charAt(0).toUpperCase() }}
-          </div>
-          <div>
-            <div class="font-medium text-secondary-900">
-              {{ article.author.name }}
-            </div>
-            <div class="text-xs">
-              {{ article.author.email }}
-            </div>
-          </div>
+        <!-- Category + Status -->
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-[10px] font-bold tracking-widest uppercase text-tertiary font-label px-3 py-1 bg-surface/80 backdrop-blur-md rounded">
+            {{ article.category.name }}
+          </span>
+          <AppBadge :variant="statusVariants[article.status]" size="sm">
+            {{ article.status }}
+          </AppBadge>
         </div>
 
-        <span class="text-secondary-300">·</span>
+        <!-- Title -->
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-on-surface font-headline leading-tight max-w-4xl mb-6">
+          {{ article.title }}
+        </h1>
 
-        <!-- Published date -->
-        <span>{{ formatDate(article.publishedAt) }}</span>
+        <!-- Excerpt -->
+        <p class="text-lg text-on-surface-variant/80 font-body leading-relaxed max-w-2xl mb-8">
+          {{ article.excerpt }}
+        </p>
 
-        <span class="text-secondary-300">·</span>
+        <!-- Meta row -->
+        <div class="flex flex-wrap items-center gap-6 text-sm text-on-surface-variant">
+          <!-- Author -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center text-primary font-bold border border-primary/10">
+              {{ article.author.name.charAt(0).toUpperCase() }}
+            </div>
+            <div>
+              <div class="font-semibold text-on-surface">{{ article.author.name }}</div>
+              <div class="text-xs text-on-surface-variant/50">{{ article.author.email }}</div>
+            </div>
+          </div>
 
-        <!-- Reading time -->
-        <span class="flex items-center">
-          <svg
-            class="w-4 h-4 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          {{ article.readingTime }} min read
-        </span>
+          <div class="h-6 w-px bg-outline-variant/20 hidden sm:block" />
 
-        <span class="text-secondary-300">·</span>
+          <!-- Date -->
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+            <span>{{ formatDate(article.publishedAt) }}</span>
+          </div>
 
-        <!-- Views -->
-        <span class="flex items-center">
-          <svg
-            class="w-4 h-4 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-            />
-          </svg>
-          {{ article.viewCount.toLocaleString() }} views
-        </span>
+          <!-- Reading time -->
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">schedule</span>
+            <span>{{ article.readingTime }} min read</span>
+          </div>
+
+          <!-- Views -->
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">visibility</span>
+            <span>{{ article.viewCount.toLocaleString() }} views</span>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- Featured Image -->
-    <div v-if="article.featuredImage" class="mb-8 rounded-xl overflow-hidden">
-      <img
-        :src="article.featuredImage"
-        :alt="article.title"
-        class="w-full h-auto"
-      />
-    </div>
+    <!-- Content grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Side actions -->
+      <aside class="hidden lg:flex flex-col items-center gap-6 col-span-1 sticky top-32 h-fit">
+        <button class="flex flex-col items-center gap-1 group">
+          <div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-xl">favorite</span>
+          </div>
+        </button>
+        <button class="flex flex-col items-center gap-1 group">
+          <div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-xl">bookmark</span>
+          </div>
+        </button>
+        <div class="w-6 h-px bg-outline-variant/20" />
+        <button class="flex flex-col items-center gap-1 group">
+          <div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-xl">share</span>
+          </div>
+        </button>
+      </aside>
 
-    <!-- Content -->
-    <div class="prose prose-lg max-w-none mb-12">
-      <div v-html="article.content" />
-    </div>
-
-    <!-- Tags -->
-    <div v-if="article.tags.length > 0" class="mb-12">
-      <h3
-        class="text-sm font-semibold text-secondary-500 uppercase tracking-wide mb-3"
-      >
-        Tags
-      </h3>
-      <div class="flex flex-wrap gap-2">
-        <AppBadge v-for="tag in article.tags" :key="tag" variant="primary">
-          {{ tag }}
-        </AppBadge>
-      </div>
-    </div>
-
-    <!-- Related Articles -->
-    <section
-      v-if="article.relatedArticles && article.relatedArticles.length > 0"
-      class="border-t border-secondary-200 pt-12"
-    >
-      <h2 class="text-2xl font-bold text-secondary-900 mb-6">
-        Related Articles
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <NuxtLink
-          v-for="related in article.relatedArticles"
-          :key="related.id"
-          :to="`/articles/${related.id}`"
-          class="group"
+      <!-- Main content -->
+      <div class="col-span-1 lg:col-span-11 space-y-8">
+        <!-- Article body -->
+        <div
+          class="prose max-w-none text-on-surface-variant/90 leading-relaxed
+            prose-headings:text-on-surface prose-headings:font-headline prose-headings:tracking-tight
+            prose-p:text-on-surface-variant/80 prose-p:leading-relaxed
+            prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary-fixed-dim
+            prose-strong:text-on-surface
+            prose-code:text-tertiary prose-code:bg-surface-container-high prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+            prose-pre:bg-surface-container-lowest prose-pre:border prose-pre:border-outline-variant/10
+            prose-blockquote:border-l-primary/40 prose-blockquote:text-on-surface-variant/70
+            prose-hr:border-outline-variant/10
+            prose-img:rounded-xl"
         >
-          <AppCard hoverable padding="sm">
-            <!-- Image -->
-            <div class="h-32 -mx-3 -mt-3 mb-3 bg-secondary-100 overflow-hidden">
-              <img
-                v-if="related.featuredImage"
-                :src="related.featuredImage"
-                :alt="related.title"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div
-                v-else
-                class="w-full h-full flex items-center justify-center"
-              >
-                <svg
-                  class="w-8 h-8 text-secondary-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <!-- Title -->
-            <h4
-              class="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors line-clamp-2"
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div v-html="article.content" />
+        </div>
+
+        <!-- Tags -->
+        <div v-if="article.tags.length > 0" class="pt-8 border-t border-outline-variant/10">
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in article.tags"
+              :key="tag"
+              class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant/10 text-xs font-label text-tertiary tracking-wide"
             >
-              {{ related.title }}
-            </h4>
-            <!-- Meta -->
-            <p class="text-sm text-secondary-400 mt-1">
-              {{ formatShortDate(related.publishedAt) }}
-            </p>
-          </AppCard>
-        </NuxtLink>
+              #{{ tag }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Related Articles -->
+        <section
+          v-if="article.relatedArticles && article.relatedArticles.length > 0"
+          class="pt-16 border-t border-outline-variant/10"
+        >
+          <div class="flex justify-between items-end mb-10">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-bold tracking-tighter text-on-surface font-headline">
+                Parallel Dimensions
+              </h2>
+              <p class="text-on-surface-variant/50 text-sm mt-2 font-label">
+                Articles you might find relevant
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <NuxtLink
+              v-for="related in article.relatedArticles"
+              :key="related.id"
+              :to="`/articles/${related.id}`"
+              class="group cursor-pointer"
+            >
+              <div class="relative aspect-[16/10] rounded-xl overflow-hidden mb-5 bg-surface-container-low">
+                <img
+                  v-if="related.featuredImage"
+                  :src="related.featuredImage"
+                  :alt="related.title"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div v-else class="w-full h-full flex items-center justify-center">
+                  <span class="material-symbols-outlined text-3xl text-on-surface-variant/20">image</span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              </div>
+              <h4 class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline tracking-tight leading-tight mb-2 line-clamp-2">
+                {{ related.title }}
+              </h4>
+              <p class="text-xs text-on-surface-variant/50 font-label">
+                {{ formatShortDate(related.publishedAt) }}
+              </p>
+            </NuxtLink>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </article>
 </template>

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * ArticleCard Component
-   *
-   * Card display for article list items
-   */
-
   import type { ArticleListItem, ArticleStatus } from '~/types/article';
 
   interface Props {
@@ -13,27 +7,23 @@
 
   const props = defineProps<Props>();
 
-  // Status badge variant mapping
-  const statusVariants: Record<
-    ArticleStatus,
-    'success' | 'warning' | 'default'
-  > = {
+  const statusVariants: Record<ArticleStatus, 'success' | 'warning' | 'default'> = {
     published: 'success',
     draft: 'warning',
     archived: 'default',
   };
 
-  // Format date for display
   function formatDate(date: Date | null): string {
     if (!date) return 'Unpublished';
     return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
       month: 'short',
       day: 'numeric',
-    }).format(date);
+      year: 'numeric',
+    })
+      .format(date)
+      .toUpperCase();
   }
 
-  // Truncate text safely
   function truncate(text: string, length: number): string {
     if (text.length <= length) return text;
     return text.slice(0, length).trim() + '...';
@@ -41,45 +31,38 @@
 </script>
 
 <template>
-  <NuxtLink :to="`/articles/${article.id}`" class="block group">
-    <AppCard hoverable padding="none">
+  <NuxtLink :to="`/articles/${article.id}`" class="block group content-fade-in">
+    <div
+      class="rounded-xl overflow-hidden bg-surface-container transition-all duration-300 hover:bg-surface-container-high"
+    >
       <div class="flex flex-col md:flex-row">
         <!-- Featured Image -->
-        <div
-          class="md:w-48 h-48 md:h-auto flex-shrink-0 relative overflow-hidden bg-secondary-100"
-        >
+        <div class="md:w-56 h-48 md:h-auto flex-shrink-0 relative overflow-hidden bg-surface-container-low">
           <img
             v-if="article.featuredImage"
             :src="article.featuredImage"
             :alt="article.title"
-            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div v-else class="w-full h-full flex items-center justify-center">
-            <svg
-              class="w-12 h-12 text-secondary-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
+            <span class="material-symbols-outlined text-4xl text-on-surface-variant/20">image</span>
+          </div>
+          <!-- Category pill overlay -->
+          <div class="absolute top-3 left-3">
+            <span class="text-[10px] font-bold tracking-widest px-2 py-1 bg-surface/80 backdrop-blur-md text-tertiary rounded uppercase font-label">
+              {{ article.category.name }}
+            </span>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="flex-1 p-4 md:p-6 flex flex-col">
-          <!-- Top row: Category + Status -->
-          <div class="flex items-center justify-between mb-2">
-            <span
-              class="text-xs font-medium text-primary-600 uppercase tracking-wide"
-            >
-              {{ article.category.name }}
-            </span>
+        <div class="flex-1 p-5 md:p-7 flex flex-col">
+          <!-- Meta row -->
+          <div class="flex items-center gap-2 text-[10px] font-bold text-on-surface-variant/50 tracking-widest uppercase mb-3 font-label">
+            <span>{{ formatDate(article.publishedAt) }}</span>
+            <span class="w-1 h-1 rounded-full bg-primary/40"></span>
+            <span>{{ article.readingTime }} MIN READ</span>
+            <span class="w-1 h-1 rounded-full bg-primary/40"></span>
             <AppBadge :variant="statusVariants[article.status]" size="sm">
               {{ article.status }}
             </AppBadge>
@@ -87,56 +70,29 @@
 
           <!-- Title -->
           <h3
-            class="text-lg font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors mb-2"
+            class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors mb-3 leading-tight tracking-tight font-headline line-clamp-2"
           >
             {{ truncate(article.title, 80) }}
           </h3>
 
           <!-- Excerpt -->
-          <p class="text-secondary-500 text-sm flex-1 mb-4">
+          <p class="text-on-surface-variant/70 text-sm flex-1 mb-5 font-body leading-relaxed line-clamp-2">
             {{ truncate(article.excerpt, 150) }}
           </p>
 
-          <!-- Footer: Author + Meta -->
-          <div class="flex items-center justify-between text-sm">
-            <!-- Author -->
-            <div class="flex items-center">
-              <div
-                class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium mr-2"
-              >
-                {{ article.author.name.charAt(0).toUpperCase() }}
-              </div>
-              <span class="text-secondary-600">
-                {{ article.author.name }}
-              </span>
+          <!-- Author row -->
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-container/30 flex items-center justify-center text-primary font-bold text-xs border border-primary/10"
+            >
+              {{ article.author.name.charAt(0).toUpperCase() }}
             </div>
-
-            <!-- Meta -->
-            <div class="flex items-center text-secondary-400 space-x-3">
-              <!-- Reading time -->
-              <span class="flex items-center">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                {{ article.readingTime }} min
-              </span>
-
-              <!-- Date -->
-              <span>{{ formatDate(article.publishedAt) }}</span>
-            </div>
+            <span class="text-sm font-semibold text-on-surface-variant font-body">
+              {{ article.author.name }}
+            </span>
           </div>
         </div>
       </div>
-    </AppCard>
+    </div>
   </NuxtLink>
 </template>

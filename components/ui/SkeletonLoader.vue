@@ -61,7 +61,7 @@
   });
 
   const skeletonClasses = computed(() => [
-    'animate-pulse bg-secondary-200',
+    'animate-pulse bg-surface-container-high',
     roundedClasses[props.rounded],
     props.variant === 'avatar' && 'rounded-full',
   ]);

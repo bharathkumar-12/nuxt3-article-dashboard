@@ -1,4 +1,5 @@
 declare global {
+  const DEMO_ARTICLES: typeof import('../../server/utils/articles.data').DEMO_ARTICLES
   const H3Error: typeof import('../../node_modules/h3').H3Error
   const H3Event: typeof import('../../node_modules/h3').H3Event
   const __buildAssetsURL: typeof import('../../node_modules/@nuxt/nitro-server/dist/runtime/utils/paths').buildAssetsURL
@@ -147,3 +148,4 @@ export { defineTask, runTask } from 'nitropack/runtime/internal/task';
 export { defineNitroErrorHandler } from 'nitropack/runtime/internal/error/utils';
 export { buildAssetsURL as __buildAssetsURL, publicAssetsURL as __publicAssetsURL } from '/Users/bharath/Documents/GitHub/nuxt3-article-dashboard/node_modules/@nuxt/nitro-server/dist/runtime/utils/paths';
 export { defineAppConfig } from '/Users/bharath/Documents/GitHub/nuxt3-article-dashboard/node_modules/@nuxt/nitro-server/dist/runtime/utils/config';
+export { DEMO_ARTICLES } from '/Users/bharath/Documents/GitHub/nuxt3-article-dashboard/server/utils/articles.data';

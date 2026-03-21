@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#aeb9d0",
+              "on-tertiary-fixed-variant": "#004e5a",
+              "primary-container": "#4446d2",
+              "outline-variant": "#454652",
+              "secondary": "#bcc7de",
+              "primary-fixed-dim": "#c0c1ff",
+              "on-tertiary": "#00363e",
+              "inverse-surface": "#dae2fd",
+              "on-error": "#690005",
+              "surface-dim": "#0b1326",
+              "surface-container-low": "#131b2e",
+              "tertiary-container": "#006472",
+              "on-surface-variant": "#c5c5d4",
+              "on-primary-container": "#ceceff",
+              "on-tertiary-fixed": "#001f25",
+              "surface-tint": "#c0c1ff",
+              "secondary-fixed": "#d8e3fb",
+              "error": "#ffb4ab",
+              "on-secondary": "#263143",
+              "on-secondary-fixed-variant": "#3c475a",
+              "tertiary": "#2fd9f4",
+              "surface-bright": "#31394d",
+              "on-background": "#dae2fd",
+              "on-primary": "#1000a9",
+              "primary-fixed": "#e1e0ff",
+              "on-secondary-fixed": "#111c2d",
+              "secondary-container": "#3e495d",
+              "inverse-on-surface": "#283044",
+              "outline": "#8f909e",
+              "on-error-container": "#ffdad6",
+              "secondary-fixed-dim": "#bcc7de",
+              "background": "#0b1326",
+              "surface-container-high": "#222a3d",
+              "surface-container-lowest": "#060e20",
+              "error-container": "#93000a",
+              "on-primary-fixed-variant": "#2f2ebe",
+              "tertiary-fixed-dim": "#2fd9f4",
+              "surface": "#0b1326",
+              "on-primary-fixed": "#07006c",
+              "on-tertiary-container": "#50e5ff",
+              "surface-container-highest": "#2d3449",
+              "on-surface": "#dae2fd",
+              "surface-variant": "#2d3449",
+              "tertiary-fixed": "#a2eeff",
+              "primary": "#c0c1ff",
+              "surface-container": "#171f33",
+              "inverse-primary": "#494bd6"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            scroll-behavior: smooth;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(192, 193, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 border-b border-indigo-500/10 bg-slate-900/70 backdrop-blur-xl flex justify-between items-center px-8 h-20 max-w-full mx-auto font-manrope antialiased tracking-tight shadow-[0_10px_40px_rgba(7,0,108,0.15)]">
+<div class="text-2xl font-bold tracking-tighter text-slate-100">NuxtLens</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-indigo-300 border-b-2 border-indigo-400 pb-1" href="#">Articles</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Explorations</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Archive</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-indigo-300 hover:bg-indigo-500/10 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-indigo-500/20 overflow-hidden">
+<img alt="User Profile Avatar" data-alt="Close up portrait of a professional male user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn47BxNayH7pEQtzN0R00hqUivfiD3GyPG-mZ26ozx3CojV1418VrARjDJUPenLkvM8M-1PUUvvFuRmZjnf0_VoMUI2d1-fv3x38jiyA_vdZBp4wzTlVVRfSjws38urmy_5frmfADh-E0yiKB7iidGQga6CUtw2gkRA0XIIidpLIecta5jKkGse7Ou0TA0_oFSnthDAhtUXx6iYZ7ZR0wkXP1l-8y7Vad4-l756dFcJk_jSAhWf7ISHunW2z9d2cT6J0VUX5N66mx0"/>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero Section -->
+<header class="relative w-full h-[716px] flex items-end overflow-hidden">
+<img alt="Article Hero" class="absolute inset-0 w-full h-full object-cover" data-alt="Futuristic digital network visualization with blue neon lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIBxTZ3oMVzTknctg-kmfZuwa_mrKl1DpgcyKUB56DMPK6Uz6qubwSwUDTIgxsZnO7szqhAa5Q8_LQIjMb0JaxAJmZQ_i8qBQVDm8QP4T-MKJHDkk81Su7KsQffGSvlP0l5Frr3VMv5Ep7fqeltYd0oUN3HwxJ6d7FJRr33S5OS673QtYGgxjBObzRTUkYLq554UVSOdYdugae1LG7J5JtRWOx2hIqn9u3kY49oV2ZlXex7fTnCHPW_Kkzt-A2f4qAEpQ7l-gVsBrx"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative max-w-5xl mx-auto px-8 w-full pb-16">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6 text-sm text-tertiary font-label uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Archive</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Engineering</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface-variant">Quantum Logic in Nuxt 3</span>
+</nav>
+<h1 class="text-5xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tighter leading-tight max-w-4xl mb-6">
+                    The Architecture of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-tertiary to-primary-fixed-dim">Ethereal Interfaces</span>
+</h1>
+<div class="flex flex-wrap items-center gap-6 text-on-surface-variant">
+<div class="flex items-center gap-3">
+<img alt="Author" class="w-12 h-12 rounded-full border-2 border-primary/20" data-alt="Portrait of a female software architect smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd_UJxAYXIi0uYBUIKOJ2OY1YgDTadbjmYC3bP-imw9UoAai9w0csWmYuzcR5raOVc9HGbHbeZVZIx1oCbKvujfJVyPm2MN5jxzkAXWVT713dd2x3JBExlPzq9D-hhIWd4rnfVKLVcjXYlnsd2v0ctCrEcr4HWU9qQJldjhStokUqulhOxPrZBTvETeVdrCj5z6V1O0QiQ2uFVdG7ULe31FadtVSfZmdNgd5HyRL3tzdteSqrKoAi_AmYYEQMfIQfcojgr5VtKDxXA"/>
+<div>
+<p class="text-on-surface font-semibold">Elena Vance</p>
+<p class="text-xs uppercase tracking-tighter">Lead Systems Designer</p>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="text-sm">October 24, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<span class="text-sm">12 min read</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Grid -->
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
+<!-- Side Actions (Left) -->
+<aside class="hidden lg:flex flex-col items-center gap-8 col-span-1 sticky top-32 h-fit">
+<button class="flex flex-col items-center gap-1 group">
+<div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">favorite</span>
+</div>
+<span class="text-xs font-label text-on-surface-variant">1.2k</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">bookmark</span>
+</div>
+<span class="text-xs font-label text-on-surface-variant">Save</span>
+</button>
+<div class="w-8 h-[1px] bg-outline-variant/20"></div>
+<button class="flex flex-col items-center gap-1 group">
+<div class="p-3 rounded-full border border-outline-variant/20 group-hover:bg-primary-container/20 group-hover:border-primary/40 transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">share</span>
+</div>
+</button>
+</aside>
+<!-- Main Article Body -->
+<article class="col-span-1 lg:col-span-8 space-y-8">
+<section class="text-body text-lg leading-relaxed text-on-surface-variant/90 space-y-6">
+<p class="first-letter:text-7xl first-letter:font-headline first-letter:font-bold first-letter:text-primary first-letter:mr-3 first-letter:float-left">
+                        In the rapidly evolving landscape of web development, the concept of the "Ethereal Interface" has emerged as a beacon for high-end digital experiences. We no longer build for static grids or rigid containers. Instead, we are architects of fluid, atmospheric spaces that respond to human intent with the precision of a glass lens.
+                    </p>
+<p>
+                        The introduction of Nuxt 3 has provided developers with a toolkit that goes beyond mere performance. It allows for a state of "Flow"—where the backend and frontend are so seamlessly integrated that the interface feels less like a website and more like a sentient extension of the user's focus.
+                    </p>
+<h2 class="text-3xl font-headline font-bold text-on-surface mt-12 mb-4 tracking-tight">Designing for Depth</h2>
+<p>
+                        Depth is not just about shadows. In our design system, depth is created through <span class="text-tertiary">Tonal Layering</span>. We abandon the traditional 1px border in favor of background shifts and tonal transitions. This creates a "No-Line" UI that feels integrated into the digital void.
+                    </p>
+<div class="glass-panel p-8 rounded-xl my-10 border-l-4 border-primary/40">
+<p class="italic text-xl text-on-surface font-light leading-relaxed">
+                            "The goal is not to fill the screen, but to curate the void. Every pixel must serve the narrative of the observer."
+                        </p>
+</div>
+<p>
+                        By leveraging glassmorphism, we provide a sense of futuristic tangibility. Floating elements utilize a <span class="text-primary">backdrop-blur of 12px</span>, ensuring that while they stand out, they never lose their connection to the context beneath them.
+                    </p>
+</section>
+<!-- Post Tags -->
+<div class="flex flex-wrap gap-3 pt-12">
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant/10 text-xs font-label text-tertiary">#NuxtJS</span>
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant/10 text-xs font-label text-tertiary">#WebDesign</span>
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant/10 text-xs font-label text-tertiary">#UIUX</span>
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant/10 text-xs font-label text-tertiary">#FutureTech</span>
+</div>
+<!-- Comment Section -->
+<section class="pt-20">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-8">Pulse of the Community</h3>
+<div class="space-y-6">
+<!-- Comment Input -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10">
+<textarea class="w-full bg-surface-container-lowest border-none rounded-lg p-4 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-tertiary/50 transition-all min-h-[100px]" placeholder="Add to the observation..."></textarea>
+<div class="flex justify-end mt-4">
+<button class="px-6 py-2 rounded-lg bg-gradient-to-br from-primary to-primary-container text-on-primary font-semibold text-sm hover:opacity-90 transition-all active:scale-95">Post Observation</button>
+</div>
+</div>
+<!-- Existing Comments -->
+<div class="space-y-8 mt-10">
+<div class="flex gap-4">
+<img alt="User" class="w-10 h-10 rounded-full" data-alt="Portrait of a male developer with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJT8Vw5-PCALvI0x_Azn9x_ZrjeBGHPOgNR_UjwDaCtG3nB0sjW0CJuJCxs77he7bNsYahVeL7EWrxLNKwwwrr9Uo2bns6ANVn5OLDMeGJ9Xv-r_yy40kbv0rZqmHwPHi492Aw_ST99hSS72Dn1Qx4kgSSBifOR68t7tZ7KOI2nQqAGdmLb2X33i3-9-Kze39-PycGnGQSZTrWqCilJtQ3XegebZ5dtllXFvRJHkVfCIF-V0KwGcvAms4L4SSpEN_e58YZMTJ2jJMY"/>
+<div class="space-y-2 flex-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-sm">Marcus Thorne</span>
+<span class="text-xs text-on-surface-variant/50">2 hours ago</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed bg-surface-container-high/30 p-4 rounded-xl rounded-tl-none border border-outline-variant/5">
+                                        The section on tonal layering really resonates. We've been over-relying on hard shadows for too long. This atmospheric approach feels like the natural evolution of web space.
+                                    </p>
+<button class="text-xs text-tertiary font-label flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[14px]">reply</span> Reply
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</article>
+<!-- Sidebar (Right) -->
+<aside class="col-span-1 lg:col-span-3 space-y-12">
+<div>
+<h4 class="text-xs font-label text-primary uppercase tracking-[0.2em] mb-6">Trending Observation</h4>
+<ul class="space-y-6">
+<li class="group cursor-pointer">
+<p class="text-xs text-on-surface-variant/60 mb-1">01 / ARCHITECTURE</p>
+<h5 class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Micro-Frontends in the Age of Hydration</h5>
+</li>
+<li class="group cursor-pointer">
+<p class="text-xs text-on-surface-variant/60 mb-1">02 / INTERFACE</p>
+<h5 class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">The Haptic Potential of Motion Wrappers</h5>
+</li>
+<li class="group cursor-pointer">
+<p class="text-xs text-on-surface-variant/60 mb-1">03 / OPINION</p>
+<h5 class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Why 2024 is the Year of Editorial Glass</h5>
+</li>
+</ul>
+</div>
+<div class="glass-panel p-6 rounded-2xl border border-indigo-500/10">
+<h4 class="text-on-surface font-bold mb-4">Join the Lens</h4>
+<p class="text-sm text-on-surface-variant/80 mb-6">Receive curated insights on the future of Nuxt and interface design directly to your neural feed.</p>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 text-sm mb-3 focus:ring-1 focus:ring-primary/50" placeholder="Observer Email" type="email"/>
+<button class="w-full py-3 bg-primary-container text-on-primary-container rounded-lg font-bold text-sm hover:bg-primary transition-all">Subscribe</button>
+</div>
+</aside>
+</div>
+<!-- Related Articles -->
+<section class="max-w-7xl mx-auto px-8 mt-32">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-3xl md:text-4xl font-headline font-bold text-on-surface tracking-tighter">Parallel Dimensions</h2>
+<p class="text-on-surface-variant/60 font-label text-sm mt-2">Articles you might find relevant to your current focus</p>
+</div>
+<a class="text-primary font-label text-sm flex items-center gap-2 hover:gap-3 transition-all" href="#">View All Explorations <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Related Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6">
+<img alt="Related Article" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Cybersecurity interface with glowing server nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByb31kf964_9RuCRZ10dWm4bvM34oeJFVDyR-Uu4cH7NVwNagDQ5zLwTPyNasq0lKabV_OLaxI7DbIB2vJPCpNM3oCK_ItxqZgfEYDRJRs6dd0SaRlxw5M3rMjG784gdqFzwM-kN7SWQgibxVw129dD-ZB4ibK3qve-l6OZb8_hu0Lj2UfJAw3G-x851Itleb88hZDtLfpQSGjKr6-_r089_HCAbte8DjH6Xu7L9oAoWX172ngluDlf0ds9XhXiVMEl3xayYSZWvD8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 bg-surface-container-highest/80 backdrop-blur-md rounded text-[10px] font-label text-tertiary uppercase tracking-widest border border-outline-variant/20">Security</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Quantum Encryption in the Browser</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">How WebCrypto API is evolving to meet the needs of a post-quantum digital world.</p>
+</div>
+<!-- Related Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6">
+<img alt="Related Article" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Satellite view of Earth with digital data overlays" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8aATXk4FLoJls0B8Fd342F0WFLAzKGijSwVRNZV-R8sBw8C0wp8j5sM2SZso-PKwQxSEVvV6dS19POnXwUYaAoqfyHr70VavjcGyak_8OrWo8mSVI9BCyNubcsdQ8n7uHNatbeXj_SRlYf6tPZqd1Y3_2JGB0Mwnk0B90fvn-CUTB0mVHRv3Xu-fbyQ8-9BpPvw-FOn92uy11SsMFnv3ED2WwsVkOuwnoOCSxb9CQAdX2mRdH2nle4JzwQMkZUIPw_lYrhqC3INhQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 bg-surface-container-highest/80 backdrop-blur-md rounded text-[10px] font-label text-tertiary uppercase tracking-widest border border-outline-variant/20">Data</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">The Velocity of Edge Computing</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Redefining latency through global edge deployments and Nuxt Nitro engine optimization.</p>
+</div>
+<!-- Related Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6">
+<img alt="Related Article" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist abstract architecture with flowing curves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ_r344-vcO3CkwCMvwl4lVrHl3hYIGU9grAwM-43M-JYI7Jo5a9nqukMcZAiUzffyp0UiKpPcKhGQDJCZnVMUxtxcEfwkT5xzMmC9EF-T4lVwAKuKNm4tsl9lUz6XH8KM44U1HmyNhYnD_tFYPL39SMk5YtP9navg86-QPnCmb0blDEiFVjzE4A5_n0ANZHe-u7JB2EM9tgnopo-LWLiRWomPqqDu5A_sfLT8cFuHP4WDayHCzdwDJ7Bi4N3Aj_sfXBNDhoe-BtJH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 bg-surface-container-highest/80 backdrop-blur-md rounded text-[10px] font-label text-tertiary uppercase tracking-widest border border-outline-variant/20">Aesthetics</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Neo-Brutalism vs. Glassmorphism</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A deep dive into the psychological impact of digital depth and surface transparency.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 px-8 border-t border-indigo-500/5">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 font-manrope text-sm tracking-wide">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-lg font-bold text-indigo-300">NuxtLens</div>
+<p class="text-slate-500">© 2024 NuxtLens Editorial. Built for the Ethereal Observer.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Terms</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">RSS Feed</a>
+<a class="text-slate-500 hover:text-indigo-300 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<a class="p-2 rounded-full bg-surface-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined text-indigo-400 text-lg">public</span>
+</a>
+<a class="p-2 rounded-full bg-surface-container hover:bg-primary-container transition-all" href="#">
+<span class="material-symbols-outlined text-indigo-400 text-lg">terminal</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

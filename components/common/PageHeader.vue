@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * PageHeader Component
-   *
-   * Consistent page title and description header
-   */
-
   interface Props {
     title: string;
     description?: string;
@@ -23,41 +17,29 @@
 </script>
 
 <template>
-  <header class="mb-8">
+  <header class="mb-10">
     <!-- Back button -->
     <button
       v-if="showBack"
-      class="inline-flex items-center text-secondary-500 hover:text-secondary-700 mb-4 transition-colors"
+      class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary mb-6 transition-colors text-sm font-label tracking-wide"
       @click="goBack"
     >
-      <svg
-        class="w-5 h-5 mr-1"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
+      <span class="material-symbols-outlined text-base">arrow_back</span>
       Back
     </button>
 
     <!-- Title -->
-    <h1 class="text-2xl md:text-3xl font-bold text-secondary-900">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-on-surface font-headline leading-tight">
       {{ title }}
     </h1>
 
     <!-- Description -->
-    <p v-if="description" class="mt-2 text-secondary-500 max-w-2xl">
+    <p v-if="description" class="mt-3 text-on-surface-variant/70 max-w-2xl font-body leading-relaxed">
       {{ description }}
     </p>
 
     <!-- Optional slot for actions -->
-    <div v-if="$slots['actions']" class="mt-4">
+    <div v-if="$slots['actions']" class="mt-6">
       <slot name="actions" />
     </div>
   </header>

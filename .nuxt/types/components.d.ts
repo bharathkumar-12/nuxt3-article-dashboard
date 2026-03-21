@@ -19,6 +19,8 @@ interface _GlobalComponents {
   'ArticleDetailSkeleton': typeof import("../../components/article/ArticleDetailSkeleton.vue").default
   'ArticleDetailView': typeof import("../../components/article/ArticleDetailView.vue").default
   'ArticleList': typeof import("../../components/article/ArticleList.vue").default
+  'AppFooter': typeof import("../../components/common/AppFooter.vue").default
+  'AppHeader': typeof import("../../components/common/AppHeader.vue").default
   'EmptyState': typeof import("../../components/common/EmptyState.vue").default
   'ErrorState': typeof import("../../components/common/ErrorState.vue").default
   'LoadingState': typeof import("../../components/common/LoadingState.vue").default
@@ -55,6 +57,8 @@ interface _GlobalComponents {
   'LazyArticleDetailSkeleton': LazyComponent<typeof import("../../components/article/ArticleDetailSkeleton.vue").default>
   'LazyArticleDetailView': LazyComponent<typeof import("../../components/article/ArticleDetailView.vue").default>
   'LazyArticleList': LazyComponent<typeof import("../../components/article/ArticleList.vue").default>
+  'LazyAppFooter': LazyComponent<typeof import("../../components/common/AppFooter.vue").default>
+  'LazyAppHeader': LazyComponent<typeof import("../../components/common/AppHeader.vue").default>
   'LazyEmptyState': LazyComponent<typeof import("../../components/common/EmptyState.vue").default>
   'LazyErrorState': LazyComponent<typeof import("../../components/common/ErrorState.vue").default>
   'LazyLoadingState': LazyComponent<typeof import("../../components/common/LoadingState.vue").default>

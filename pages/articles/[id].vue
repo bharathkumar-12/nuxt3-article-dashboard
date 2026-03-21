@@ -49,9 +49,6 @@
 
     <!-- Loading state -->
     <div v-if="isLoading">
-      <div class="mb-8">
-        <div class="h-6 w-20 bg-secondary-200 rounded animate-pulse mb-4" />
-      </div>
       <ArticleDetailSkeleton />
     </div>
 

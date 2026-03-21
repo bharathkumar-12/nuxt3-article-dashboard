@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * AppButton Component
-   *
-   * Reusable button with variants and loading state
-   */
-
   type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
   type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -32,32 +26,27 @@
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
-      'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
+      'glass-panel text-primary font-bold hover:bg-primary-container transition-all duration-300',
     secondary:
-      'bg-secondary-200 text-secondary-800 hover:bg-secondary-300 focus:ring-secondary-400',
+      'border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary/40 bg-transparent transition-all duration-300',
     ghost:
-      'bg-transparent text-secondary-700 hover:bg-secondary-100 focus:ring-secondary-300',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+      'bg-transparent text-on-surface-variant hover:bg-surface-container-high transition-all duration-300',
+    danger:
+      'bg-error-container/30 text-error border border-error/20 hover:bg-error-container/50 transition-all duration-300',
   };
 
   const sizeClasses: Record<ButtonSize, string> = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg',
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-3 text-sm',
+    lg: 'px-8 py-4 text-base',
   };
 
   const buttonClasses = computed(() => [
-    // Base styles
-    'inline-flex items-center justify-center font-medium rounded-lg',
-    'transition-colors duration-200',
-    'focus:outline-none focus:ring-2 focus:ring-offset-2',
-    // Variant
+    'inline-flex items-center justify-center rounded-full font-label tracking-tight',
+    'focus:outline-none active:scale-[0.98] transition-transform duration-200',
     variantClasses[props.variant],
-    // Size
     sizeClasses[props.size],
-    // Full width
     props.fullWidth && 'w-full',
-    // Disabled/Loading
     (props.disabled || props.loading) && 'opacity-50 cursor-not-allowed',
   ]);
 

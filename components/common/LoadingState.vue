@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * LoadingState Component
-   *
-   * Full-page or section loading indicator
-   */
-
   interface Props {
     message?: string;
     size?: 'sm' | 'md' | 'lg';
@@ -28,11 +22,13 @@
   <div
     :class="[
       'flex flex-col items-center justify-center',
-      fullPage ? 'fixed inset-0 bg-white/80 backdrop-blur-sm z-50' : 'py-12',
+      fullPage
+        ? 'fixed inset-0 bg-surface/80 backdrop-blur-sm z-50'
+        : 'py-12',
     ]"
   >
     <!-- Spinner -->
-    <div :class="['text-primary-600 mb-4', sizeClasses[size]]">
+    <div :class="['text-primary mb-4', sizeClasses[size ?? 'md']]">
       <svg
         class="animate-spin w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +51,7 @@
       </svg>
     </div>
 
-    <!-- Message -->
-    <p class="text-secondary-500 text-sm">
+    <p class="text-on-surface-variant/60 text-sm font-label">
       {{ message }}
     </p>
   </div>

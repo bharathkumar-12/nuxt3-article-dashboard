@@ -11,7 +11,10 @@ import type {
   ArticleDetail,
   ArticleFilters,
 } from '~/types/article';
-import { mapApiResponseToArticleList } from '~/models/domain/article.mapper';
+import {
+  mapApiResponseToArticleList,
+  mapApiArticleToDetail,
+} from '~/models/domain/article.mapper';
 
 /**
  * Composable return type for article list
@@ -118,93 +121,50 @@ export async function useArticleDetail(
 ): Promise<UseArticleDetailReturn> {
   const id = toValue(articleId);
 
-  // Since our API returns all articles at once,
-  // we'll fetch all and find the one we need
-  // In a real API, this would be a direct endpoint call like /api/articles/:id
   const {
-    data: allData,
+    data,
     isLoading,
     error,
     refresh: apiRefresh,
-  } = useAPI<unknown, ArticleListItem[]>(
-    '/api/articles', // Use internal API endpoint
+  } = useAPI<unknown, ArticleDetail | null>(
+    `/api/articles/${id}`,
     {
       key: `article-detail-${id}`,
       transform: (rawData) => {
         try {
-          return mapApiResponseToArticleList(rawData);
+          return mapApiArticleToDetail(rawData as Parameters<typeof mapApiArticleToDetail>[0]);
         } catch (e) {
           console.error('[useArticleDetail] Mapping error:', e);
-          return [];
+          return null;
         }
       },
-      defaultValue: [],
+      defaultValue: null,
       retries: 2,
     },
   );
 
-  // Ensure data is fetched during SSR
   if (import.meta.server) {
     await apiRefresh();
   }
 
-  // Find the specific article
-  const article = computed<ArticleDetail | null>(() => {
-    if (!allData.value || allData.value.length === 0) return null;
+  const article = computed<ArticleDetail | null>(() => data.value ?? null);
 
-    const found = allData.value.find((a) => a.id === id);
-    if (!found) return null;
-
-    // Convert ArticleListItem to ArticleDetail
-    // In a real app, we'd fetch additional detail from the API
-    return {
-      ...found,
-      content: `This is the full content for "${found.title}". In a production environment, this would come from a dedicated article detail endpoint.`,
-      author: {
-        ...found.author,
-        email: 'author@example.com',
-      },
-      tags: ['technology', 'web'],
-      viewCount: Math.floor(Math.random() * 1000),
-      createdAt: found.publishedAt ?? new Date(),
-      updatedAt: new Date(),
-      relatedArticles: allData.value.filter((a) => a.id !== id).slice(0, 3),
-    } as ArticleDetail;
-  });
-
-  // Custom error for not found
   const typedError = computed(() => {
     if (error.value) {
-      return {
-        message: error.value.message,
-        code: error.value.code,
-      };
+      return { message: error.value.message, code: error.value.code };
     }
-    // Check if article wasn't found after loading
-    if (
-      !isLoading.value &&
-      !article.value &&
-      allData.value &&
-      allData.value.length > 0
-    ) {
-      return {
-        message: `Article with ID "${id}" was not found.`,
-        code: 'NOT_FOUND',
-      };
+    if (!isLoading.value && !article.value) {
+      return { message: `Article with ID "${id}" was not found.`, code: 'NOT_FOUND' };
     }
     return null;
   });
-
-  const refresh = async () => {
-    await apiRefresh();
-  };
 
   return {
     article,
     isLoading,
     isError: computed(() => typedError.value !== null),
     error: typedError,
-    refresh,
+    refresh: apiRefresh,
   };
 }
 

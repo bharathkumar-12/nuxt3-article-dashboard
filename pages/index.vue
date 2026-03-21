@@ -73,49 +73,22 @@
     >
       <template #actions>
         <!-- Search Input -->
-        <div class="relative max-w-md">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <svg
-              class="w-5 h-5 text-secondary-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
+        <div class="relative w-72">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40 text-lg pointer-events-none">
+            search
+          </span>
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="Search articles..."
-            class="block w-full pl-10 pr-10 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-secondary-900 placeholder-secondary-400"
+            placeholder="Search insights..."
+            class="block w-full pl-11 pr-10 py-3 rounded-full bg-surface-container-lowest border-none text-on-surface placeholder-on-surface-variant/40 focus:ring-1 focus:ring-tertiary/50 text-sm transition-all"
           />
-          <!-- Clear button -->
           <button
             v-if="searchQuery"
-            class="absolute inset-y-0 right-0 pr-3 flex items-center text-secondary-400 hover:text-secondary-600"
+            class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant/40 hover:text-primary transition-colors"
             @click="clearSearch"
           >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <span class="material-symbols-outlined text-base">close</span>
           </button>
         </div>
       </template>
@@ -124,14 +97,13 @@
     <!-- Article count -->
     <div
       v-if="!isLoading && !isError && articles.length > 0"
-      class="mb-6 text-sm text-secondary-500"
+      class="mb-8 text-xs font-bold text-on-surface-variant/40 tracking-widest uppercase font-label"
     >
       <span v-if="searchQuery">
-        Found {{ filteredArticles.length }} of {{ articles.length }} articles
+        {{ filteredArticles.length }} of {{ articles.length }} explorations
       </span>
       <span v-else>
-        {{ articles.length }}
-        {{ articles.length === 1 ? 'article' : 'articles' }}
+        {{ articles.length }} {{ articles.length === 1 ? 'exploration' : 'explorations' }}
       </span>
     </div>
 

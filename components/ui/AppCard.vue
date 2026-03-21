@@ -1,18 +1,14 @@
 <script setup lang="ts">
-  /**
-   * AppCard Component
-   *
-   * Reusable card container with optional hover effects
-   */
-
   interface Props {
     hoverable?: boolean;
     padding?: 'none' | 'sm' | 'md' | 'lg';
+    glass?: boolean;
   }
 
   const props = withDefaults(defineProps<Props>(), {
     hoverable: false,
     padding: 'md',
+    glass: false,
   });
 
   const paddingClasses: Record<string, string> = {
@@ -23,9 +19,12 @@
   };
 
   const cardClasses = computed(() => [
-    'bg-white rounded-xl shadow-sm border border-secondary-200 overflow-hidden',
+    'rounded-xl overflow-hidden',
+    props.glass
+      ? 'glass-panel border border-indigo-500/5'
+      : 'bg-surface-container',
     props.hoverable &&
-      'transition-all duration-200 hover:shadow-md hover:border-primary-200 cursor-pointer',
+      'transition-all duration-300 hover:bg-surface-container-high cursor-pointer',
     paddingClasses[props.padding],
   ]);
 </script>

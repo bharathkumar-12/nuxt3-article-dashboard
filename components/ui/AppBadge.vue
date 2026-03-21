@@ -1,10 +1,4 @@
 <script setup lang="ts">
-  /**
-   * AppBadge Component
-   *
-   * Small badge/tag for status indicators and labels
-   */
-
   type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger';
   type BadgeSize = 'sm' | 'md';
 
@@ -19,20 +13,20 @@
   });
 
   const variantClasses: Record<BadgeVariant, string> = {
-    default: 'bg-secondary-100 text-secondary-700',
-    primary: 'bg-primary-100 text-primary-700',
-    success: 'bg-green-100 text-green-700',
-    warning: 'bg-yellow-100 text-yellow-700',
-    danger: 'bg-red-100 text-red-700',
+    default: 'bg-surface-container-highest text-on-surface-variant border border-outline-variant/10',
+    primary: 'bg-primary/10 text-tertiary border border-tertiary/20',
+    success: 'bg-surface-container-highest text-tertiary border border-tertiary/20',
+    warning: 'bg-surface-container-highest text-primary border border-primary/20',
+    danger: 'bg-error-container/30 text-error border border-error/20',
   };
 
   const sizeClasses: Record<BadgeSize, string> = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-1 text-sm',
+    sm: 'px-2 py-0.5 text-[10px]',
+    md: 'px-2.5 py-1 text-xs',
   };
 
   const badgeClasses = computed(() => [
-    'inline-flex items-center font-medium rounded-full',
+    'inline-flex items-center font-bold rounded-full tracking-widest uppercase font-label',
     variantClasses[props.variant],
     sizeClasses[props.size],
   ]);
