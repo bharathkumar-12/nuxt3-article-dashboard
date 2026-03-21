@@ -7,6 +7,10 @@ export default defineNuxtConfig({
     appManifest: false,
   },
 
+  nitro: {
+    preset: 'netlify',
+  },
+
   // Enable TypeScript strict mode
   typescript: {
     strict: true,
