@@ -35,4 +35,3 @@ export { useArticlesList, useArticleDetail, useArticlesByCategory, useArticlesSe
 export { formatDate, formatRelativeTime, truncateText, generateId, debounce, safeJsonParse, isEmpty, pluralize, sleep } from '../utils/common';
 export { useArticleStore, ArticleStore } from '../stores/article.store';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
-export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
