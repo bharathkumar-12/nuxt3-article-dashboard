@@ -1,5 +1,3 @@
-import { DEMO_ARTICLES } from '~/server/utils/articles.data';
-
 export default defineEventHandler((event) => {
   const id = getRouterParam(event, 'id');
   const article = DEMO_ARTICLES.find((a) => a.id === id);
