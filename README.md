@@ -479,3 +479,9 @@ MIT License - feel free to use this project as a reference or starting point.
 ---
 
 Built with ❤️ using Nuxt 3, TypeScript, Pinia, and Tailwind CSS.
+
+---
+
+## Maintenance
+
+Last maintenance update: <!--LAST_UPDATED-->2026-05-19<!--/LAST_UPDATED-->
