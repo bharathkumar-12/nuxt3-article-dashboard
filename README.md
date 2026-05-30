@@ -21,14 +21,18 @@ A production-ready Article Dashboard built with **Nuxt 3**, **TypeScript**, **Pi
 ### Installation
 
 ```bash
+
 # Clone the repository
+
 git clone https://github.com/your-repo/nuxt3-article-dashboard.git
 cd nuxt3-article-dashboard
 
 # Install dependencies
+
 npm install
 
 # Start development server
+
 npm run dev
 ```
 
@@ -37,10 +41,13 @@ The application will be available at `http://localhost:3000`
 ### Build for Production
 
 ```bash
+
 # Build the application
+
 npm run build
 
 # Preview production build
+
 npm run preview
 ```
 
@@ -51,57 +58,78 @@ nuxt3-article-dashboard/
 ├── assets/
 │   └── css/
 │       └── tailwind.css          # Tailwind directives & custom styles
+
 ├── components/
 │   ├── article/                   # Article-specific components
+
 │   │   ├── ArticleCard.vue
 │   │   ├── ArticleCardSkeleton.vue
 │   │   ├── ArticleDetailSkeleton.vue
 │   │   ├── ArticleDetailView.vue
 │   │   └── ArticleList.vue
 │   ├── common/                    # Shared UI states
+
 │   │   ├── EmptyState.vue
 │   │   ├── ErrorState.vue
 │   │   ├── LoadingState.vue
 │   │   └── PageHeader.vue
 │   └── ui/                        # Reusable UI primitives
+
 │       ├── AppBadge.vue
 │       ├── AppButton.vue
 │       ├── AppCard.vue
 │       └── SkeletonLoader.vue
 ├── composables/
 │   ├── useAPI.ts                  # Generic, reusable API wrapper
+
 │   └── useArticles.ts             # Article-specific data fetching
+
 ├── layouts/
 │   └── default.vue                # Main application layout
+
 ├── models/
 │   ├── api/                       # Raw API response types
+
 │   │   ├── article.api.ts
 │   │   └── index.ts
 │   └── domain/                    # Domain models & mappers
+
 │       ├── article.mapper.ts
 │       └── index.ts
 ├── pages/
 │   ├── articles/
 │   │   └── [id].vue               # Article detail page
+
 │   └── index.vue                  # Article listing page
+
 ├── server/
 │   └── api/
 │       └── articles.get.ts        # API route with fallback
+
 ├── stores/
 │   ├── article.store.ts           # Pinia article store
+
 │   └── index.ts
 ├── types/
 │   ├── article.ts                 # Article type definitions
+
 │   ├── common.ts                  # Common type utilities
+
 │   └── index.ts
 ├── utils/
 │   ├── common.ts                  # Utility functions
+
 │   └── index.ts
 ├── app.vue                        # App entry point
+
 ├── error.vue                      # Global error page
+
 ├── nuxt.config.ts                 # Nuxt configuration
+
 ├── tailwind.config.ts             # Tailwind configuration
+
 └── tsconfig.json                  # TypeScript configuration
+
 ```
 
 ## 🏗️ Architecture Overview
@@ -395,19 +423,25 @@ Mobile-first approach using Tailwind breakpoints:
 ## 🧪 Development Commands
 
 ```bash
+
 # Development server with HMR
+
 npm run dev
 
 # Production build
+
 npm run build
 
 # Preview production build locally
+
 npm run preview
 
 # Type checking
+
 npm run typecheck
 
 # Linting
+
 npm run lint
 ```
 
