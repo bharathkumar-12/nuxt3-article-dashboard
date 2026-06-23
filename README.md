@@ -518,4 +518,4 @@ Built with ❤️ using Nuxt 3, TypeScript, Pinia, and Tailwind CSS.
 
 ## Maintenance
 
-Last maintenance update: <!--LAST_UPDATED-->2026-06-10<!--/LAST_UPDATED-->
+Last maintenance update: <!--LAST_UPDATED-->2026-06-23<!--/LAST_UPDATED-->
